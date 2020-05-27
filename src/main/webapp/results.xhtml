@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<head>
+<title>Results of registry search</title>
+<link rel="stylesheet" type="text/css" href="css/tree2.css" />
+</head>
+
+<body>
+<f:view>
+
+	<h:form id="resultsform">
+		<h:commandButton id="newquerybutton" value="New Query"
+			action="newquery" />
+		<hr />
+		<h:dataTable value="#{result.results}" var="resource"
+			rowClasses="oddRow,evenRow">
+			<f:facet name="caption">
+				<h:outputText
+					value="Results for #{result.subject} #{result.properties}" />
+			</f:facet>
+			<h:column>
+				<f:facet name="header">
+					<h:column>identifier</h:column>
+				</f:facet>
+				<h:outputText value="#{resource.identifier}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:column>title</h:column>
+				</f:facet>
+				<h:outputLabel value="#{resource.title}"
+					onmouseover="popupMsg('description goes here');"
+					onmouseout="hidePopupMsg()" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:column>Subject</h:column>
+				</f:facet>
+				<h:outputText value="#{resource.subjectname}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:column>UCDs</h:column>
+				</f:facet>
+				<t:dataList var="ucd" value="#{resource.ucds}">
+					<h:outputText value="#{ucd.fragment}" />
+					<br/>
+				</t:dataList>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:column>access links</h:column>
+				</f:facet>
+				<t:dataList value="#{resource.capabilities}" var="cap">
+					<h:panelGroup rendered="#{cap.isAvailable}">
+						<h:outputLink value="#{cap.interface.url}">
+							<h:outputText value="#{cap.name}" />
+						</h:outputLink>
+						<h:outputText value=" " />
+					</h:panelGroup>
+				</t:dataList>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</f:view>
+</body>
+
+</html>

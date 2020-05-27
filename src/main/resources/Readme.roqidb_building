@@ -1,0 +1,9 @@
+
+To build the roqi database the ResourceLoaderApp with the following flags/values:
+
+--config roqi-loader.xml --initdb --resourcesFile src/main/resources/<roqi_data.xml> 
+
+NOTE: You need to delete any precursor database files by hand (havent been able to get the
+app to do this right) when initializing.
+
+Appending data to an existing db can be done if "--initdb" value is dropped.

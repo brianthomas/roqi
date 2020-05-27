@@ -1,0 +1,29 @@
+
+Hi,
+
+Partially to prove that it can be done, I've written an XSLT  
+stylesheet that will harvest from all registries in the Registry of  
+Registries and then write each resource record out to a separate file  
+with each registry having its own directory. Oh and it's only 81 lines  
+long!
+
+The registry directories are named by the server part of their access  
+URL so, for example, records from  
+http://msslxv.mssl.ucl.ac.uk:8080/astrogrid-registry/OAIHandlerv1_0 
+  live in the directory msslxv.mssl.ucl.ac.uk.
+
+The files corresponding to resource records are named according to  
+their IVORNs except that '/' in the IVORN are replaced with '_' so:  
+ivo://mssl.ucl.ac.uk/community/test.xml gets stored as  
+mssl.ucl.ac.uk_community_test.xml.
+
+To run it, you'll a XSLT 2.0-capable XSL engine - I recommend Saxon.  
+Using this, the command to harvest is:
+
+java -jar /path/to/saxon8.jar -it main autoharvest.xsl
+
+autoharvest.xsl
+
+Cheers,
+
+Matthew

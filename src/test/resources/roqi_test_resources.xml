@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<roqidata  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+           xmlns:owl="http://www.w3.org/2002/07/owl#" 
+           xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema#" 
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance#" 
+           xmlns:ucd="http://www.ivoa.net/Document/WD/vocabularies/20080222/UCD#" 
+           xmlns:r="http://www.ivoa.net/owl/registryResource.owl#" 
+           xmlns="http://archive.astro.umd.edu/owl/roqi.owl#" 
+           xml:base="http://archive.astro.umd.edu/owl/roqi.owl"
+>
+<subject rdf:ID="galaxies">
+  <r:Resource rdf:ID="resource2">
+    <r:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dudeage is the dude</r:title>
+    <r:rights rdf:datatype="http://www.w3.org/2001/XMLSchema#string">public</r:rights>
+    <r:shortName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Resource2: adhoc added</r:shortName>
+    <r:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">ivo://resource2</r:identifier>
+  </r:Resource>
+</subject>
+<subject rdf:ID="abundances--stars">
+  <r:Resource rdf:ID="resource1">
+    <r:hasCoverage>
+      <r:Coverage rdf:ID="CDS.VizieR_III_200B_coverage">
+        <r:footprint rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://cdsarc.u-strasbg.fr/viz-bin/w/Footprint?-gal&amp;-z&amp;8&amp;-s&amp;sqrt&amp;catid=3200</r:footprint>
+        <r:waveband rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optical</r:waveband>
+      </r:Coverage>
+    </r:hasCoverage>
+    <r:shortName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">III/200B</r:shortName>
+    <hasUCD>
+      <ucd:Metaid rdf:ID="Metaid_1"/>
+    </hasUCD>
+    <r:hasCapability>
+      <r:Capability rdf:ID="CDS.VizieR_III_200B_capability1">
+        <r:hasInterface>
+          <r:Interface rdf:ID="CDS.VizieR_III_200B_interface1">
+            <xsi:type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WebBrowser</xsi:type>
+            <r:hasAccessURL>
+              <r:AccessURL rdf:ID="CDS.VizieR_III_200B_inteface1_accessurl">
+                <r:url rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://vizier.u-strasbg.fr/cgi-bin/VizieR-2?-source=III/200B</r:url>
+                <r:use rdf:datatype="http://www.w3.org/2001/XMLSchema#string">full</r:use>
+              </r:AccessURL>
+            </r:hasAccessURL>
+          </r:Interface>
+        </r:hasInterface>
+      </r:Capability>
+    </r:hasCapability>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The catalogue includes [Fe/H] determinations and atmospheric parameters (Teff, logg ) obtained from high resolution spectroscopic observations and detailed analyses, most of them carried out with the help of model-atmospheres. This fifth Edition of the catalogue contains 5946 determinations for 3247 stars, including 751 stars in 84 associations, clusters or galaxies. The literature (700 bibliographical references) is complete up to December 1995. The Catalogue is made up of three tables : Table 1 : field stars Table 2 : stars in galactic associations and clusters, and in SMC, LMC, M33 Table 3 : numbered list of bibliographical references.</rdfs:comment>
+    <r:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">ivo://resource1</r:identifier>
+    <r:rights rdf:datatype="http://www.w3.org/2001/XMLSchema#string">public</r:rights>
+    <r:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Catalogue of [Fe/H] (Cayrel de Strobel+, 1997)</r:title>
+    <r:hasCapability>
+      <r:Capability rdf:ID="CDS.VizieR_III_200B_capability3">
+        <r:standardId rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">ivo://ivoa.net/std/ConeSearch</r:standardId>
+        <r:hasInterface>
+          <r:Interface rdf:ID="CDS.VizieR_III_200B_capability3_interface">
+            <r:queryType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GET</r:queryType>
+            <r:role rdf:datatype="http://www.w3.org/2001/XMLSchema#string">std</r:role>
+            <r:resultType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">text/xml+votable</r:resultType>
+            <r:hasAccessURL>
+              <r:AccessURL rdf:ID="CDS.VizieR_III_200B_capability3_interface_accessURL">
+                <r:use rdf:datatype="http://www.w3.org/2001/XMLSchema#string">base</r:use>
+                <r:url rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://vizier.u-strasbg.fr/viz-bin/votable/-A?-source=III/200B&amp;</r:url>
+              </r:AccessURL>
+            </r:hasAccessURL>
+            <xsi:type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ParamHTTP</xsi:type>
+          </r:Interface>
+        </r:hasInterface>
+        <xsi:type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Conesearch</xsi:type>
+      </r:Capability>
+    </r:hasCapability>
+    <r:hasValidationLevel>
+      <r:ValidationLevel rdf:ID="CDS.VizieR_III_200B_validationLevel">
+        <r:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1</r:value>
+        <r:validatedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">ivo://CDS.VizieR</r:validatedBy>
+      </r:ValidationLevel>
+    </r:hasValidationLevel>
+    <hasUCD>
+      <ucd:Photfluxsb rdf:ID="Photfluxsb_4"/>
+    </hasUCD>
+    <r:hasCapability>
+      <r:Capability rdf:ID="CDS.VizieR_III_200B_capability2">
+        <r:hasInterface>
+          <r:Interface rdf:ID="CDS.VizieR_III_200B_capability2_interface">
+            <xsi:type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ParamHTTP</xsi:type>
+            <r:queryType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GET</r:queryType>
+            <r:hasAccessURL>
+              <r:AccessURL rdf:ID="CDS.VizieR_III_200B_capability2_interface_accessURL">
+                <r:use rdf:datatype="http://www.w3.org/2001/XMLSchema#string">base</r:use>
+                <r:url rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://vizier.u-strasbg.fr/viz-bin/votable/-dtd/-A?-source=III/200B</r:url>
+              </r:AccessURL>
+            </r:hasAccessURL>
+            <r:role rdf:datatype="http://www.w3.org/2001/XMLSchema#string">base</r:role>
+            <r:resultType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">text/xml+votable</r:resultType>
+          </r:Interface>
+        </r:hasInterface>
+      </r:Capability>
+    </r:hasCapability>
+  </r:Resource>
+</subject>
+</roqidata>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-2.0.xsd 
+       http://www.directwebremoting.org/schema/spring-dwr 
+       http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd"
+>
+
+    <import resource="classpath:roqi-datasource.xml"/> 
+    <import resource="classpath:roqi-application.xml"/> 
+    
+    <dwr:configuration>
+       <dwr:init>
+          <dwr:creator id="jsf" class="org.directwebremoting.faces.JsfCreator"/>
+       </dwr:init>
+        
+       <!--dwr:create type="jsf" javascript="Reasoner" class="net.ivoa.roqi.RoqiOWLAPIReasoner">
+          <dwr:param name="managedBeanName" value="reasoner"/> 
+          <dwr:include method="findAvailableUCDs" /> 
+       </dwr:create-->
+       
+       <!--dwr:create type="jsf" javascript="Query" class="net.ivoa.roqi.QueryImpl">
+          <dwr:param name="managedBeanName" value="query"/> 
+          <dwr:include method="getSubject"/> 
+          <dwr:include method="setSubject"/> 
+          <dwr:include method="getProperties"/> 
+          <dwr:include method="getResults"/> 
+       </dwr:create-->
+      
+       <dwr:convert type="bean" class="net.ivoa.roqi.model.AvailableUCD"/>
+       <dwr:convert type="bean" class="net.ivoa.roqi.model.RegistryResource"/>
+       <dwr:convert type="bean" class="net.ivoa.roqi.model.Capability"/>
+       <dwr:convert type="bean" class="net.ivoa.roqi.model.Interface"/>
+       
+       <!--dwr:signatures><![CDATA[ 
+           import java.util.List; 
+           import net.ivoa.roqi.QueryImpl;
+           QueryImpl.setProperties(List<String> props);]]>
+       </dwr:signatures-->
+       
+    </dwr:configuration>
+    
+    <dwr:controller id="dwrController" debug="true" /> 
+    
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+       <property name="mappings">
+         <props>
+            <prop key="/engine.js">dwrController</prop>
+            <prop key="/util.js">dwrController</prop>
+            <prop key="/interface/**">dwrController</prop>
+            <prop key="/call/**">dwrController</prop>
+         </props>
+       </property>
+    </bean>
+    
+</beans> 

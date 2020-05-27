@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+  <head>
+    <title>Registry Object Query Interface</title>
+    <link rel="stylesheet" type="text/css" href="css/tree2.css"/>
+  </head>
+  
+  <body onload="setButtonsDisabled(true)">
+  
+    <f:view>
+    
+      <script type='text/javascript' src='./dwr/interface/Reasoner.js'></script>
+      <script type='text/javascript' src='./dwr/interface/Query.js'></script>
+      <script type='text/javascript' src='./dwr/engine.js'></script>
+      <script type='text/javascript' src='./dwr/util.js'></script>
+      <ui:include src="/javascript/popup.js"/>
+      <ui:include src="/javascript/chooser.js"/>
+  
+      <t:div id="object1" 
+         styleClass="popup"
+         onmouseout="overdiv=0; setTimeout('hidePopupMsg()',1000)">
+      </t:div>
+    
+      <center>
+      	<h:outputText styleClass="titleText" value="Registry Object Query"/>
+      </center>
+      
+      <br/>
+      <h:outputText styleClass="emphasisText" value="Directions:"/>
+      <h:outputText value=" Use this form to query for VO Resources by subject type. You 
+                        may also choose to add addtional property constraints on the
+                        subject in order to further refine the query."/>
+      <br/>                 
+      <hr/>
+
+      <h:form id="queryform" onsubmit="setQueryParams()">
+      
+        <h:inputHidden id="selected_subject" value="#{query.subject}"/>
+        <h:commandButton id="submit" value="Submit Query" action="submit"/>
+        <h:commandButton id="reset" value="Reset Form" onclick="clearForm()" disabled="true"/> 
+        <hr/>
+        
+        <h:panelGrid columns="2" 
+           styleClass="formStyle" 
+           width="100%"
+        >
+          <h:panelGroup id="subjectChooser">
+            <h:panelGrid columns="3" 
+                         styleClass="itemsHeader" 
+                         columnClasses="headerEntry"
+                         id="subjectHeader"
+            >
+              <h:outputLabel value="Choose a subject" 
+                             onmouseover="popupMsg('Click on a subject to choose it for query.&gt;br/&lt;You may further constrain the query by clicking on properities');" 
+                             onmouseout="hidePopupMsg()"
+              />
+            </h:panelGrid>
+            <t:div styleClass="scrollBoxPane">
+              <t:tree2 id="subjectTree"   
+                       binding="#{tree.tree}" 
+                       clientSideToggle="false" 
+                       preserveToggle="true" 
+                       showLines="true" 
+                       showRootNode="false"
+                       value="#{tree.subjects}" 
+                       var="subject"
+              >
+                <f:facet name="ClassTreeNode">
+                  <h:panelGrid id="subjectsTable" 
+                               columns="1" 
+                               styleClass="#{subject.level % 2 == 1 ? 'treeTableEven' : 'treeTableOdd'}" 
+                               columnClasses="subjectEntry"
+                               rendered="#{subject.rendered}"
+                  >
+                    <h:outputLabel onmouseover="mouseoverSubject(this,'#{subject.description}')" 
+                                   onclick="selectSubject(this,'#{subject.name}');"
+                                   onmouseout="mouseoffSubject(this)"
+                    >
+                       <h:outputText value="#{subject.name}" id="subjectName" style="font-size: 10pt;"/> 
+                    </h:outputLabel>
+                  </h:panelGrid>
+                </f:facet>
+              </t:tree2>
+            </t:div>
+            <t:div>
+            <h:panelGroup id="subjectFilterGroup"> 
+                 <h:outputLabel value="Filter: "/> 
+                 <h:inputText id="subjectfilter" size="15" value="#{tree.filter}"/>
+                 <h:commandButton id="filterSubjectButton" 
+                 				  action="enableResetButton()" 
+                                  actionListener="#{tree.listenFilter}" 
+                                  value="Filter Subjects"/>
+            </h:panelGroup> 
+            </t:div>
+            <t:div>
+            <h:panelGroup id="subjectExpandCollapseGroup"> 
+                 <h:commandButton id="expandAllSubjectButton" 
+                                  actionListener="#{tree.listenExpand}" 
+                                  value="Expand All"/>
+                 <h:commandButton id="collapseAllSubjectButton" 
+                                  actionListener="#{tree.listenCollapse}" 
+                                  value="Collapse All"/>
+            </h:panelGroup> 
+            </t:div>
+          </h:panelGroup>
+        
+          <h:panelGroup> 
+            <h:panelGrid columns="1" 
+                         styleClass="itemsHeader" 
+                         columnClasses="headerEntry"
+                         id="propertyHeader"
+            >
+               <h:outputLabel value="Choose Properties" 
+                              onmouseover="popupMsg('Once a subject class is chosen, you may then further constrain the type of returned instances.&gt;br/&lt;Click on any number of properties to provide constraints on the query.&gt;br/&lt;If you do not select any properties, then any instance of the subject will be returned.');" 
+                              onmouseout="hidePopupMsg()"
+                              />
+            </h:panelGrid>
+            <t:div styleClass="scrollBoxPane">
+               <h:panelGrid columns="2" 
+                         styleClass="properties" 
+                         columnClasses="propertyName,propertyName"
+                         id="properties"
+               >
+               </h:panelGrid>
+            </t:div>
+            
+            <h:panelGroup id="propertiesFilterGroup">
+              <h:outputLabel value="Property Filter: "/> 
+              <h:inputText id="propertyfilter" size="15" style="disable: true"/>
+            </h:panelGroup>  
+            
+          </h:panelGroup>  
+          
+        </h:panelGrid> 
+      </h:form>
+
+      <center>
+        <h:inputText id="statusbar" 
+       				 title='status bar' 
+       				 readonly='true'
+					 style='text-decoration:none; text-align:left; background-color: transparent; width: 100%; border-color: black; border-style: solid; border: 2; cursor:default;'
+        />
+      </center> 
+
+      
+    </f:view>
+    
+  </body>
+  
+</html>

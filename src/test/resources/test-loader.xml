@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+>
+
+    <!-- for running the ResourceLoaderApp -->
+    <import resource="classpath:test-reasoner-config.xml"/> 
+    
+    <bean id="dbcreator" class="net.ivoa.roqi.tool.CreateDbApp">
+        <property name="mapFile" value="test-reasoner-config.map"/>
+        <property name="dbName" value="file:./src/test/resources/db/testdb"/>
+    </bean>
+    
+</beans>

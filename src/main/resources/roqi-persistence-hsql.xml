@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-2.0.xsd 
+       http://www.directwebremoting.org/schema/spring-dwr 
+       http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd"
+>
+
+    <bean id="hibernateProperties" 
+          class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="properties">
+            <props>
+                 <prop key="hibernate.hbm2ddl.auto">none</prop>
+                 <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+                 <prop key="hibernate.show_sql">false</prop>
+                 <prop key="hibernate.format_sql">false</prop>
+                 <prop key="cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+                 <prop key="hibernate.current_session_context_class">thread</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="sessionFactory" 
+          class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+    >
+        <property name="dataSource">
+            <ref bean="roqiDataSource"/>
+        </property>                    
+        
+        <property name="annotatedClasses">
+           <list>
+              <value>net.ivoa.roqi.model.Subject</value>
+              <value>net.ivoa.roqi.model.RegistryResource</value>
+              <value>net.ivoa.roqi.model.Capability</value>
+              <value>net.ivoa.roqi.model.Interface</value>
+              <value>net.ivoa.roqi.model.Ucd</value>
+           </list>
+        </property>
+        <property name="hibernateProperties">
+        	<ref bean="hibernateProperties"/>
+        </property>                                                                                
+    </bean>
+    
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+       <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+</beans> 

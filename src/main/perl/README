@@ -1,0 +1,31 @@
+
+in order to extract data for the project, you need to run following:
+
+1. Mathews script to get the data from registries
+2. run extract_subject_metadata.pl on selected metadata to extract basic, raw
+   metadata. For example:
+
+   > perl extract_subject_metadata.pl data-march-2009/cdsweb.u-strasbg.fr/*.xml > cds_roqi_raw5.owl
+
+3. Extract the resource metadata into xml form using extract_resources_from_onto.pl, for
+   example:
+
+   > perl extract_resources_from_onto.pl cds_roqi_raw5.owl > cds_resources.xml 
+
+4. Create the ontology for the tool to use using trim_resource_metadata_in_onto.pl,
+   for example:
+
+   > perl trim_resource_metadata_in_onto.pl cds_roqi_raw5.owl > tmp.owl 
+
+5. Fix inheritance of subjects in the extracted ontology. Fix_subject_inheritance.pl
+   will do some minimal ordering under Subject and top classes (you may want to use
+   ontology editor like protege to further order the hierarchy after running the script).
+   
+   > perl fix_subject_inheritance.pl tmp.owl > roqi.owl
+   
+6. Copy over roqi.owl into src/main/resources
+
+7. Use the ResourceLoaderApp , with the --initdb option, to create and load the 
+   resource metadata in extracted resource file (cds_resources.xml in the example above). 
+
+

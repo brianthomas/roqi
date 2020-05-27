@@ -1,0 +1,8 @@
+
+This database built using the ResourceLoaderApp with the following flags/values:
+
+--config test-loader.xml --initdb --resourcesFile src/test/resources/roqi_test_resources.xml
+
+be sure to delete the existing db first, or it will just append (which is NOT what
+you want)
+

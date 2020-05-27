@@ -1,0 +1,366 @@
+<?xml version="1.0"?><project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.ivoa</groupId>
+  <artifactId>roqi</artifactId>
+  <name>Registry Object Query Interface package</name>
+  <version>0.85</version>
+  <description>This package provides a servlet for doing object/UCD based-queries
+	to a VO Registry for VOResources. 
+  </description>
+  <packaging>war</packaging>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+
+<!--
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+           <descriptor>src/main/assembly/dist.xml</descriptor>
+        </configuration>
+      </plugin>
+-->
+
+      <plugin>
+         <artifactId>maven-war-plugin</artifactId>
+         <configuration>
+            <archive>
+               <manifest>
+                  <addClasspath>true</addClasspath>
+               </manifest>
+            </archive>
+            </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <overview>${basedir}/docs/overview.html</overview>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+      
+    </plugins>
+
+  </build>
+  
+  <reporting>
+    <plugins>
+    
+      <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-jxr-plugin</artifactId>
+           <!--version>2.2</version-->
+       </plugin>
+       
+       <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <configuration>
+             <debug>true</debug>
+             <linkXref>true</linkXref>
+             <targetJdk>1.5</targetJdk>
+             <sourceEncoding>ISO-8859-1</sourceEncoding>
+          </configuration>
+       </plugin>
+       
+       <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.4</version>
+          <configuration>
+             <formats>
+               <format>html</format>
+               <format>xml</format>
+             </formats>
+             <check>
+                <branchRate>85</branchRate>
+                <lineRate>85</lineRate>
+                <haltOnFailure>false</haltOnFailure>
+                <totalBranchRate>85</totalBranchRate>
+                <totalLineRate>85</totalLineRate>
+                <packageLineRate>85</packageLineRate>
+                <packageBranchRate>85</packageBranchRate>
+                <regexes>
+                  <regex>
+                     <pattern>net.ivoa.*</pattern>
+                     <lineRate>80</lineRate>
+                  </regex>
+                  <!--regex>
+                    <pattern>com.example.boringcode.*</pattern>
+                    <branchRate>40</branchRate>
+                    <lineRate>30</lineRate>
+                  </regex-->
+                </regexes>
+              </check>
+          </configuration>
+       </plugin>
+       
+       <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>findbugs-maven-plugin</artifactId>
+          <version>2.3</version>
+          <configuration>
+             <threshold>Normal</threshold>
+             <effort>Default</effort>
+          </configuration>
+       </plugin>
+       
+    </plugins>
+  </reporting>
+
+  <repositories>
+
+    <repository>
+      <id>nsa-repository</id>
+      <name>NSA Local Repository</name>
+      <url>http://sdmvc.tuc.noao.edu:8081/artifactory/repo</url>
+    </repository>
+
+    <repository>
+      <id>ibiblio-repository</id>
+      <name>IBIBLIO Maven Repository</name>
+      <url>http://www.ibiblio.org/maven2</url>
+    </repository>
+
+  </repositories>
+
+  <dependencies>
+ 
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.13</version>
+      <!--scope>provided</scope-->
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.0</version>
+      <scope>test</scope>
+    </dependency>
+    
+     <dependency>
+      <groupId>dwr</groupId>
+      <artifactId>dwr</artifactId>
+      <version>2.0.5</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>edu.noao.nsa</groupId>
+      <artifactId>sqlexec</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+    
+   <dependency>
+    <groupId>myfaces</groupId>
+    <artifactId>tomahawk</artifactId>
+    <version>1.1.8</version>
+   </dependency>
+   
+   <dependency>
+   	<groupId>javax.faces</groupId>
+   	<artifactId>jsf-api</artifactId>
+   	<version>1.2_12</version>
+   </dependency>
+   
+   <dependency>
+   	<groupId>javax.faces</groupId>
+   	<artifactId>jsf-impl</artifactId>
+   	<version>1.2_12</version>
+   </dependency>
+   
+   <dependency>
+   	<groupId>commons-el</groupId>
+   	<artifactId>commons-el</artifactId>
+   	<version>1.0</version>
+   </dependency>
+   
+   <dependency>
+   	<groupId>commons-fileupload</groupId>
+   	<artifactId>commons-fileupload</artifactId>
+   	<version>1.0</version>
+   </dependency>
+   
+   <dependency>
+   	<groupId>commons-lang</groupId>
+   	<artifactId>commons-lang</artifactId>
+   	<version>2.1</version>
+   </dependency>
+    
+    <dependency>
+      <groupId>antlr</groupId>
+      <artifactId>antlr</artifactId>
+      <version>2.7.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>owlapi</groupId>
+      <artifactId>owlapi</artifactId>
+      <version>2.2.0</version>
+    </dependency>
+    
+<!--
+    <dependency>
+      <groupId>owlapi</groupId>
+      <artifactId>reasoner</artifactId>
+      <version>2.2.0</version>
+    </dependency>
+-->
+    
+     <dependency>
+      <groupId>org.h2</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.1.113</version>
+    </dependency>
+    
+     <dependency>
+     	<groupId>org.hibernate</groupId>
+     	<artifactId>hibernate-core</artifactId>
+     	<version>3.3.1.GA</version>
+     </dependency>
+     
+     <dependency>
+     	<groupId>org.hibernate</groupId>
+     	<artifactId>hibernate-annotations</artifactId>
+     	<version>3.4.0.GA</version>
+     </dependency>
+     
+     <dependency>
+     	<groupId>org.hibernate</groupId>
+     	<artifactId>hibernate-search</artifactId>
+     	<version>3.1.0.GA</version>
+     </dependency>
+     
+     <dependency>
+     	<groupId>org.hibernate</groupId>
+     	<artifactId>hibernate-ehcache</artifactId>
+     	<version>3.3.1.GA</version>
+     </dependency>
+     
+     <dependency>
+     	<groupId>javassist</groupId>
+     	<artifactId>javassist</artifactId>
+     	<version>3.4.GA</version>
+     </dependency>
+     
+     <dependency>
+     	<groupId>dom4j</groupId>
+     	<artifactId>dom4j</artifactId>
+     	<version>1.6.1</version>
+     </dependency>
+     
+     <dependency>
+     	<groupId>commons-collections</groupId>
+     	<artifactId>commons-collections</artifactId>
+     	<version>3.2</version>
+     </dependency>
+     
+     <dependency>
+     	<groupId>jta</groupId>
+     	<artifactId>jta</artifactId>
+     	<version>1.1</version>
+     </dependency>
+     
+     <dependency>
+     	<groupId>org.slf4j</groupId>
+     	<artifactId>slf4j-api</artifactId>
+     	<version>1.5.2</version>
+     </dependency>
+     
+     <dependency>
+     	<groupId>org.slf4j</groupId>
+     	<artifactId>slf4j-simple</artifactId>
+     	<version>1.5.2</version>
+     </dependency>
+     
+     <dependency>
+     	<groupId>org.springframework</groupId>
+     	<artifactId>spring</artifactId>
+     	<version>2.5.6</version>
+     </dependency>
+     
+     <dependency>
+     	<groupId>commons-dbcp</groupId>
+     	<artifactId>commons-dbcp</artifactId>
+     	<version>1.2.2</version>
+     </dependency>
+    
+     <dependency>
+       <groupId>xerces</groupId>
+       <artifactId>xercesImpl</artifactId>
+       <version>2.7.1</version>
+     </dependency>
+     
+    <dependency>
+      <groupId>args4j</groupId>
+      <artifactId>args4j</artifactId>
+      <version>2.0.7</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+       <version>2.5.6</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-webmvc</artifactId>
+    	<version>2.5.6</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-aop</artifactId>
+    	<version>2.5.6</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>commons-beanutils</groupId>
+    	<artifactId>commons-beanutils</artifactId>
+    	<version>1.8.0</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>facelets</groupId>
+      <artifactId>jsf-facelets</artifactId>
+      <version>1.1.14</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>postgresql</groupId>
+    	<artifactId>postgresql</artifactId>
+    	<version>8.4-702.jdbc3</version>
+    </dependency>
+    
+<!--
+    <dependency>
+    	<groupId>postgresql</groupId>
+    	<artifactId>postgresql</artifactId>
+    	<version>8.1-408.jdbc3</version>
+    </dependency>
+-->
+  	
+  </dependencies>
+  
+  <distributionManagement>
+    <repository>
+      <id>roqi-deploy-repository</id>
+      <url>scp://localhost/var/www/html/maven</url>
+    </repository>
+  </distributionManagement>
+
+</project>

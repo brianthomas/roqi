@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+        version="1.2"
+>
+
+   <application>
+      <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
+   </application>
+   
+   <application>
+      <locale-config>
+         <default-locale>en</default-locale>
+      </locale-config>
+	  <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+   </application>
+   
+   <navigation-rule>
+      <from-view-id>/query.xhtml</from-view-id>
+      <navigation-case>
+         <from-outcome>submit</from-outcome>
+         <to-view-id>/results.xhtml</to-view-id>
+      </navigation-case>
+   </navigation-rule>
+   
+   <navigation-rule>
+      <from-view-id>/results.xhtml</from-view-id>
+      <navigation-case>
+         <from-outcome>newquery</from-outcome>
+         <to-view-id>/query.xhtml</to-view-id>
+      </navigation-case>
+   </navigation-rule>
+
+   <managed-bean>
+      <managed-bean-name>result</managed-bean-name>
+      <managed-bean-class>net.ivoa.roqi.ResultImpl</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
+      <managed-property>
+        <property-name>query</property-name>
+        <value>#{query}</value>
+      </managed-property>
+      <managed-property>
+        <property-name>reasoner</property-name>
+        <value>#{reasoner}</value>
+      </managed-property>
+   </managed-bean>
+   
+   <managed-bean>
+      <managed-bean-name>tree</managed-bean-name>
+      <managed-bean-class>net.ivoa.roqi.SubjectTree</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
+      <managed-property>
+        <property-name>reasoner</property-name>
+        <value>#{reasoner}</value>
+      </managed-property>
+   </managed-bean>
+   
+</faces-config>

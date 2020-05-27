@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:p1="http://www.ivoa.net/Document/WD/vocabularies/20080222/UCD#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance#"
+    xmlns="http://archive.astro.umd.edu/owl/roqi.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:r="http://www.ivoa.net/owl/registryResource.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://archive.astro.umd.edu/owl/roqi.owl">
+  <owl:Ontology rdf:about="">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ROQI application test instance of ontology.</rdfs:comment>
+    <owl:imports rdf:resource="http://www.ivoa.net/owl/registryResource.owl"/>
+    <owl:imports rdf:resource="http://www.ivoa.net/Document/WD/vocabularies/20080222/UCD"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="abundances--stars">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.ivoa.net/Document/WD/vocabularies/20080222/UCD#Photflux"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasAvailableUcd"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasAvailableUcd"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.ivoa.net/Document/WD/vocabularies/20080222/UCD#Metaid"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="stars"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="abundances"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue>
+          <r:Resource rdf:ID="resource1">
+            <r:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >ivo://resource1</r:identifier>
+          </r:Resource>
+        </owl:hasValue>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasResource"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Abundances:Stars</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="galaxies">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasAvailableUcd"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.ivoa.net/Document/WD/vocabularies/20080222/UCD#Metaid"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue>
+          <r:Resource rdf:ID="resource2">
+            <r:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >ivo://resource2</r:identifier>
+          </r:Resource>
+        </owl:hasValue>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasResource"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Subject"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Galaxy</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="abundances--galaxies">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#abundances"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#galaxies"/>
+  </owl:Class>
+  <owl:Class rdf:about="#stars">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >stars</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Subject"/>
+  </owl:Class>
+  <owl:Class rdf:about="#abundances">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >abundances</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Subject"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="#hasAvailableUcd">
+    <rdfs:domain rdf:resource="#Subject"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasUCD">
+    <rdfs:domain rdf:resource="http://www.ivoa.net/owl/registryResource.owl#Resource"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasResource">
+    <rdfs:domain rdf:resource="#Subject"/>
+  </owl:ObjectProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 533)  http://protege.stanford.edu -->

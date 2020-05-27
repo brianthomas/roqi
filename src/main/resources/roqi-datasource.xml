@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+         <property name="location">
+            <value>classpath:roqi.properties</value>
+         </property>
+    </bean>
+    
+    <bean id="roqiDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${roqidb.driverClassName}"/>
+	 	<property name="url" value="${roqidb.url}"/>
+        <property name="username" value="${roqidb.username}"/> 
+        <property name="password" value="${roqidb.password}"/>
+        <property name="initialSize" value="5"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    
+</beans>

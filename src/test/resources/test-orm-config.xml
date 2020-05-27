@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+>
+
+   <import resource="classpath:roqi-persistence-hsql.xml"/> 
+   
+   <!-- create an in-memory db -->
+   <bean id="roqiDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:mem:roqi_testorm_db"/>
+        <property name="username" value="sa"/> 
+        <property name="password" value="password1"/>
+        <property name="initialSize" value="5"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+   
+</beans> 

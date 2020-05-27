@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+        version="2.5"
+>
+
+	<display-name>ROQI</display-name> 
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/roqi-webapp.xml</param-value>
+		<!--param-value>classpath:roqi-*.xml</param-value-->
+	</context-param>
+	<context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>client</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.apache.myfaces.ALLOW_JAVASCRIPT</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.apache.myfaces.DETECT_JAVASCRIPT</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.apache.myfaces.PRETTY_HTML</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.apache.myfaces.AUTO_SCROLL</param-name>
+        <param-value>true</param-value>
+    </context-param>
+<!--
+    <context-param>
+        <param-name>org.apache.myfaces.SECRET</param-name>
+        <param-value>ddfNzY1NDMyMTA=</param-value>
+    </context-param>
+-->
+    <context-param>
+        <param-name>org.apache.myfaces.VALIDATE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <description>Treat readonly same as if disabled attribute was set for select elements.</description>
+        <param-name>org.apache.myfaces.READONLY_AS_DISABLED_FOR_SELECTS</param-name>
+        <param-value>false</param-value>
+    </context-param> 
+    <context-param>
+        <description>
+            Use the defined class as the class which will be called when a resource is added to the
+            ExtensionFilter handling. Using StreamingAddResource here helps with performance. If you want to add
+            custom components and want to use the ExtensionFilter, you need to provide your custom implementation here.
+        </description>
+        <param-name>org.apache.myfaces.ADD_RESOURCE_CLASS</param-name>
+        <param-value>org.apache.myfaces.renderkit.html.util.DefaultAddResource</param-value>
+    </context-param>        
+    <context-param>
+        <description>Virtual path in the URL which triggers loading of resources for the MyFaces extended components
+            in the ExtensionFilter.</description>
+        <param-name>org.apache.myfaces.RESOURCE_VIRTUAL_PATH</param-name>
+        <param-value>/faces/myFacesExtensionResource</param-value>
+    </context-param>
+    <context-param>
+        <description>Check if the extensions-filter has been properly configured.</description>
+        <param-name>org.apache.myfaces.CHECK_EXTENSIONS_FILTER</param-name>
+        <param-value>true</param-value>
+    </context-param>    
+    <context-param>
+        <description>Define partial state saving as true/false.</description>
+        <param-name>javax.faces.PARTIAL_STATE_SAVING_METHOD</param-name>
+        <param-value>false</param-value>
+    </context-param>    
+    <context-param>
+        <param-name>org.apache.myfaces.RENDER_VIEWSTATE_ID</param-name>
+        <param-value>true</param-value> 
+    </context-param>    
+    <context-param>
+		<param-name>org.apache.myfaces.STRICT_XHTML_LINKS</param-name> 
+        <param-value>true</param-value> 
+    </context-param>
+    <context-param>
+		<param-name>org.apache.myfaces.CONFIG_REFRESH_PERIOD</param-name> 
+        <param-value>2</param-value> 
+    </context-param> 
+	
+	<context-param>
+	   <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+	   <param-value>.xhtml</param-value>
+    </context-param>
+    <!-- optional debug info --> 
+    <context-param>
+       <param-name>facelets.DEVELOPMENT</param-name>
+       <param-value>true</param-value>
+    </context-param>
+    <!-- optional debug info --> 
+    <context-param> 
+      <param-name>com.sun.faces.verifyObjects</param-name>
+      <param-value>true</param-value>
+    </context-param>
+    
+	<filter>
+       <filter-name>MyFacesExtensionsFilter</filter-name>
+       <!--filter-class>org.apache.myfaces.component.html.util.ExtensionsFilter</filter-class-->
+       <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+       <!--
+       <init-param>
+            <param-name>maxFileSize</param-name>
+            <param-value>20m</param-value>
+       </init-param>
+       -->
+    </filter>
+	
+	<!-- extension mapping for adding <script/>, <link/>, 
+	     and other resource tags to JSF-pages -->
+   <filter-mapping>
+   		<filter-name>MyFacesExtensionsFilter</filter-name>
+        <servlet-name>FacesServlet</servlet-name>
+    </filter-mapping>
+
+    <!-- extension mapping for serving page-independent resources 
+         (javascript, stylesheets, images, etc.)-->
+    <filter-mapping>
+       <filter-name>MyFacesExtensionsFilter</filter-name>
+       <url-pattern>/faces/myFacesExtensionResource/*</url-pattern>
+    </filter-mapping>
+	
+	<filter>
+      <filter-name>DwrFacesFilter</filter-name>
+      <filter-class>org.directwebremoting.faces.FacesExtensionFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+       <filter-name>DwrFacesFilter</filter-name>
+       <url-pattern>/dwr/*</url-pattern>
+    </filter-mapping>
+    
+     <servlet>
+        <servlet-name>FacesServlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>FacesServlet</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+    
+	<servlet>
+      <servlet-name>dwr-invoker</servlet-name>
+      <!--servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class-->
+      <servlet-class>org.directwebremoting.spring.DwrSpringServlet</servlet-class>
+      <init-param>
+        <param-name>debug</param-name>
+        <param-value>true</param-value>
+      </init-param>
+      <load-on-startup>2</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+      <servlet-name>dwr-invoker</servlet-name>
+      <url-pattern>/dwr/*</url-pattern>
+    </servlet-mapping>
+  
+    <listener>
+    	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+  
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    
+</web-app>

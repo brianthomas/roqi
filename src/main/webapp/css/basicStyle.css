@@ -1,0 +1,176 @@
+
+/* ************************************** */
+/* Global Format - pure Content Layout */
+/* ************************************** */
+
+.emphasisText {
+	text-decoration:underline;
+	color:black;
+	background-color: #eeeccc;
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+.titleText {
+	font-family: arial;
+	background-color: ;
+	background-color: #efec99;
+	font-weight: bold;
+	font-size: 14pt;
+}
+
+.popup {
+	position: absolute; 
+	background-color: #ffffdd;
+	color: black;
+	border-color: black;
+	border-width: 20px; 
+	visibility: show; 
+	left: 25px; 
+	top:-100px; 
+	z-index: +1;
+}
+
+.inputField {
+	width:100%;
+	text-align:left;
+	border: 0px;
+}
+
+.readOnlyInputField {
+	width:100%;
+	text-align:left;
+	border:none;
+	text-decoration: none; 
+	cursor:default;
+}
+
+.scrollBoxPane {
+	overflow:auto; 
+	width:100%; 
+	height:300px;
+}
+
+select, input, body, h1, h2, h3, h4, p, ul, ol, li, div, td, th, label, address, blackquote, nobr, b, i, pre, textarea 
+{
+	font-family: arial;
+	font-size: 10pt;
+	text-shadow: #333 0 0 0;
+}
+
+.hyperlink {
+	text-decoration:underline;
+}
+
+.hyperlinkHover {
+	text-decoration:underline;
+	cursor: pointer;
+	font-weight: bold;
+	background-color: #efec99;
+}
+
+
+/* ************************************** */
+/* Global Format - hyperlinks */
+/* ************************************** */
+
+a {
+	color:black;
+}
+
+/* ************************************** */
+/* Global Format - table layout */
+/* ************************************** */
+table  {
+	border-collapse: collapse;
+	border: 0px;
+	table-layout:fixed;
+}
+
+tr {
+	border: 0px;
+}
+
+td {
+	border: 0px;
+	padding:0px;
+}
+
+tr.head {
+	background-color: #e0ec99;
+}
+
+tr.evenRow {
+	background-color: #f2f8f8;
+}
+
+tr.oddRow {
+	background-color: #e0ecec;
+}
+
+.rollOverEffect{
+        background-color:#ffec99;
+}
+
+.rollOverEffect tr td {
+        font-weight: bold;
+}
+
+.rowClickEffect{
+        background-color:#ecd099;
+}
+
+.rowClickEffect tr td {
+	    font-weight: bold;
+}
+
+.scrollCol {
+	width: 17px;
+}
+
+/*
+	This is a browser hack that removes the scrollCol for IE, because IE+xhtml will add 
+	the width of the scrollbar to the table width, thus making the scrollCol obsolete
+*/
+* html .scrollCol {
+	width: 0px;
+}
+
+.tablebody {
+	height:100px;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	width:100%;
+}
+
+a.linkNoUnderline {
+	text-decoration: none;
+}
+
+/* ************************************** */
+/*        Global Format - panel layout            */
+/* ************************************** */
+
+div.panelClass {
+	font-family: Verdana;
+	color: black;
+}
+
+div.panelHeader {
+	background-color: #e0ecec;
+	padding: 0.4em 0.6em 0.4em 0.6em;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.panelTitle {
+	padding-left: 5px;
+}
+
+/* ************************************** */
+/*               Error Messages                      */
+/* ************************************** */
+.errorStyle {
+	font-weight: bold;
+	color: red;
+}
